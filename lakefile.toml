@@ -1,0 +1,9 @@
+name = "blueprint-gen-example"
+defaultTargets = ["Example"]
+
+[[require]]
+name = "blueprint-gen"
+git = "https://github.com/hanwenzhu/blueprint-gen"
+
+[[lean_lib]]
+name = "Example"
