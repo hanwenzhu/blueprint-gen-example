@@ -27,22 +27,30 @@ jobs:
         with:
           fetch-depth: 0 # Fetch all history for all branches and tags
 
-      - name: Build the project
-        uses: leanprover/lean-action@f807b338d95de7813c5c50d018f1c23c9b93b4ec # v1.2.0
+      - name: Install elan
+        run: curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
 
-      - name: Cache API docs
+      - name: Get Mathlib cache
+        run: ~/.elan/bin/lake exe cache get || true
+
+      - name: Build project
+        run: ~/.elan/bin/lake build Example
+
+      - name: Cache mathlib API docs
         uses: actions/cache@v4
         with:
           path: |
-            .lake/build/doc/Aesop
-            .lake/build/doc/Batteries
-            .lake/build/doc/find
             .lake/build/doc/Init
             .lake/build/doc/Lake
             .lake/build/doc/Lean
-            .lake/build/doc/Mathlib
             .lake/build/doc/Std
-          key: Docs-${{ hashFiles('lake-manifest.json') }}
+            .lake/build/doc/Mathlib
+            .lake/build/doc/declarations
+            .lake/build/doc/find
+            .lake/build/doc/*.*
+            !.lake/build/doc/declarations/declaration-data-Example*
+          key: MathlibDoc-${{ hashFiles('lake-manifest.json') }}
+          restore-keys: MathlibDoc-
 
       - name: Build project API documentation
         run: ~/.elan/bin/lake -R -Kenv=dev build Example:docs
