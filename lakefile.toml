@@ -3,9 +3,8 @@ defaultTargets = ["Example"]
 
 [[require]]
 name = "lean-architect"
-path = "../lean-architect"
-# git = "https://github.com/hanwenzhu/lean-architect"
-# rev = "main"
+git = "https://github.com/hanwenzhu/lean-architect"
+rev = "main"
 
 [[require]]
 name = "doc-gen4"
