@@ -1,4 +1,4 @@
-import BlueprintGen
+import Architect
 
 
 /-! # Natural numbers -/
@@ -94,6 +94,6 @@ Richard Taylor and Andrew Wiles (1995) \emph{Ring-theoretic properties of certai
 
 -- Finally, these are utility commands for debugging:
 
-#show_blueprint BlueprintGen.Content
-#show_blueprint
-#show_blueprint_json
+-- #show_blueprint Architect.Content
+-- #show_blueprint
+-- #show_blueprint_json
